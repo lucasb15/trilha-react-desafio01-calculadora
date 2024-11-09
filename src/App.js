@@ -33,7 +33,9 @@ const App = () => {
   };
 
   const handleMinusNumbers = () => {
-    if (firstNumber === "0") {
+    if (currentNumber === "0") {
+      setCurrentNumber("-");
+    } else if (firstNumber === "0") {
       setFirstNumber(String(currentNumber));
       setCurrentNumber("0");
       setOperation("-");
