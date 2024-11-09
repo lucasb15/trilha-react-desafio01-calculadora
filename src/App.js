@@ -45,6 +45,32 @@ const App = () => {
     }
   };
 
+  const handleVersusNumbers = () => {
+    if (firstNumber === "0") {
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber("0");
+      setOperation("*");
+    } else {
+      const sum = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(sum));
+      setFirstNumber("0");
+      setOperation("");
+    }
+  };
+
+  const handleDebtNumbers = () => {
+    if (firstNumber === "0") {
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber("0");
+      setOperation("/");
+    } else {
+      const sum = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(sum));
+      setFirstNumber("0");
+      setOperation("");
+    }
+  };
+
   const handleEquals = () => {
     if (!(firstNumber === "0") && operation !== "") {
       switch (operation) {
@@ -54,6 +80,14 @@ const App = () => {
 
         case "-":
           handleMinusNumbers();
+          break;
+
+        case "*":
+          handleVersusNumbers();
+          break;
+
+        case "/":
+          handleDebtNumbers();
           break;
         default:
           break;
@@ -66,8 +100,8 @@ const App = () => {
       <Content>
         <Input value={currentNumber} />
         <Row>
-          <Button label="X" />
-          <Button label="/" />
+          <Button label="X" onClick={handleVersusNumbers} />
+          <Button label="/" onClick={handleDebtNumbers} />
           <Button label="C" onClick={handleOnClear} />
           <Button label="." />
         </Row>
